@@ -1,0 +1,469 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Tzvi-H/jigsaw-labs/blob/main/02-16-23/sql-select-lab\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "wSxeBIYCOS6O"
+      },
+      "source": [
+        "# Select SQL Lab"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "w0uimXSyOS6W"
+      },
+      "source": [
+        "### Introduction\n",
+        "We've learned all the basics about setting up our SQL database, creating tables, and inserting data. In this lab we will practice querying the data from our salad shop database using `SELECT` statements."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "VP76En2dOS6X"
+      },
+      "source": [
+        "### Loading the Data"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 32,
+      "metadata": {
+        "id": "9xMHhWLGOS6Y"
+      },
+      "outputs": [],
+      "source": [
+        "import sqlite3\n",
+        "import pandas as pd\n",
+        "\n",
+        "\n",
+        "conn = sqlite3.connect('./grocery.db')\n",
+        "cursor = conn.cursor()\n",
+        "\n",
+        "employees_url = \"https://raw.githubusercontent.com/eng-6-22/mod-1-sql-curriculum/master/sql-select-lab/data/employees.csv\"\n",
+        "ingredients_url = \"https://raw.githubusercontent.com/eng-6-22/mod-1-sql-curriculum/master/sql-select-lab/data/ingredients.csv\"\n",
+        "ingredients_df = pd.read_csv(ingredients_url)\n",
+        "employees_df = pd.read_csv(employees_url)\n",
+        "ingredients_df.to_sql('ingredients', conn,\n",
+        "                  index = False, if_exists = 'replace')\n",
+        "employees_df.to_sql('employees', conn, index = False,\n",
+        "        if_exists = 'replace')"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4EWEFnmqOS6a"
+      },
+      "source": [
+        "### Selecting data\n",
+        "Our database is now ready for querying. We will use the python library `sqlite3` for running our SELECT statements.\n",
+        "So to begin, let's select select the employees.\n",
+        "\n",
+        "Fill in the appropriate SQL statements inside of each function.\n",
+        "\n",
+        "> We'll help you get started with the first one."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "zmiBthc7OS6b",
+        "outputId": "26c2c6ae-404e-4891-8218-456acb194b28"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "[(1, 'Tom', 'manager', '2019-05-20', 10001, '212-438-3984'),\n",
+              " (2, 'Alison', 'salad maker', '2020-01-04', 10023, '212-329-2489'),\n",
+              " (3, 'Jerry', 'delivery driver', '2019-12-15', 10001, '212-219-1029')]"
+            ]
+          },
+          "execution_count": 4,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "# cursor = conn.cursor()\n",
+        "# cursor.execute('select * from employees;')\n",
+        "# cursor.fetchall()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "pD-kbRjjOS6c"
+      },
+      "outputs": [],
+      "source": [
+        "def all_employees():\n",
+        "    pass\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "39co-npsOS6d"
+      },
+      "outputs": [],
+      "source": [
+        "len(all_employees()) == 12"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "sBfVdYb_OS6e"
+      },
+      "outputs": [],
+      "source": [
+        "def all_ingredients():\n",
+        "    pass"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "8EPWA6MoOS6e"
+      },
+      "outputs": [],
+      "source": [
+        "len(all_ingredients()) == 20"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "q-_GkKasOS6f"
+      },
+      "outputs": [],
+      "source": [
+        "def all_ingredient_names():\n",
+        "    pass"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "9lTXJtXcOS6f"
+      },
+      "outputs": [],
+      "source": [
+        "len(all_ingredient_names()) == 20"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "8b5unwiPOS6g"
+      },
+      "outputs": [],
+      "source": [
+        "def all_employee_start_dates():\n",
+        "    pass"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "e5aH9RtmOS6g"
+      },
+      "outputs": [],
+      "source": [
+        "len(all_employee_start_dates()) == 12"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "EKseAn_FOS6i"
+      },
+      "source": [
+        "### Select Practice"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "cZa8teF4OS6j"
+      },
+      "source": [
+        "In the following exercises, answer the question by creating a sql select statement that will provide us with the solution. After reading each question, first create a sql statement, the run it using the cursor object to find the answer. \n",
+        "\n",
+        "> HINT: use the WHERE clause and boolean logic to filter the data within the select statement.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "udIWHh-NOS6j"
+      },
+      "source": [
+        "Here's an example:\n",
+        "What ingredients cost less than $1/oz?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "WL44TK7IOS6j"
+      },
+      "outputs": [],
+      "source": [
+        "#statement = '''SELECT * FROM ingredients WHERE cost_per_ounce < 1.0'''\n",
+        "#cursor.execute(statement)\n",
+        "#cursor.fetchall()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "zYeXaKP-OS6k"
+      },
+      "outputs": [],
+      "source": [
+        "def cheaper_ingredients():\n",
+        "    pass"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "3BCvYc9HOS6k"
+      },
+      "source": [
+        "What date did the employee Naomi begin working? "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "S5Qjo2dfOS6l"
+      },
+      "outputs": [],
+      "source": [
+        "def naomi_start_date():\n",
+        "    pass"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "L-S-upHeOS6l"
+      },
+      "outputs": [],
+      "source": [
+        "naomi_start_date() == [('2019-02-12',)]"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "mi8_LjDmOS6l"
+      },
+      "source": [
+        "Which ingredients expire after February 3rd 2020? "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "CvBFQnjxOS6m"
+      },
+      "outputs": [],
+      "source": [
+        "def ingredients_expiring_after_feb():\n",
+        "    pass"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Et7l4UdaOS6m"
+      },
+      "outputs": [],
+      "source": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "5WMyhCGsOS6m"
+      },
+      "source": [
+        "Which ingredients cost more than 1.00 but less than 1.50?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 33,
+      "metadata": {
+        "id": "RZ6fUACoOS6m"
+      },
+      "outputs": [],
+      "source": [
+        "def ingredients_middle_price():\n",
+        "    cursor.execute('''\n",
+        "      select *\n",
+        "      from ingredients\n",
+        "      where cost_per_ounce > 1 and cost_per_ounce < 1.50\n",
+        "    ''')\n",
+        "    return cursor.fetchall()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 34,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "inUCDpm1OS6n",
+        "outputId": "81df751d-148b-4dc0-a746-101510b03b25"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 34
+        }
+      ],
+      "source": [
+        "all([(ingredient[2] < 1.50 or ingredient[2] > 1) for ingredient in ingredients_middle_price()])"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qNLN7RpSOS6n"
+      },
+      "source": [
+        "Which employees' home zip code is 10001 or 10002?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 35,
+      "metadata": {
+        "id": "hNRh0NHdOS6n"
+      },
+      "outputs": [],
+      "source": [
+        "def employees_in_nearby_zip_code():\n",
+        "    cursor.execute('''\n",
+        "      select *\n",
+        "      from employees\n",
+        "      where zip_code in (\"10001\", \"10002\")\n",
+        "    ''')\n",
+        "    return cursor.fetchall()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 36,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yJLjH4OlOS6n",
+        "outputId": "f1e69e0d-9437-42a7-b3ae-835a14204afc"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 36
+        }
+      ],
+      "source": [
+        "all([(employee[-2] == 10001 or employee[-2] == 10002) for employee in employees_in_nearby_zip_code()])"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qmXjLQAAOS6o"
+      },
+      "source": [
+        "### Conclusion"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "jvrUFB5COS6o"
+      },
+      "source": [
+        "Using the SELECT statement in sql is how we query the data in the database. We use the SELECT statement to retrieve exactly the data we are interested in analyzing. In this lab we started off with some basic SELECT commands using `SELECT *` to select everything from a table, and `SELECT column_name` to select all the data from a specific column, or columns, in a table.\n",
+        "\n",
+        "Most of the time however, we are going to want to add some more complex filters to our SELECT statements, so we can be more precise in the data we are querying. For example, if our employees table had a 1,000,000 rows but we only wanted to see those rows for employees that started after a certain date, we would use a filter to limit the results of a query. The `WHERE` clause is how we filter in our SELECT statements. \n",
+        "\n",
+        "At the end of the lab, we used the `WHERE` clause, in conjunction with boolean logic, to apply filters to the queries."
+      ]
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.9.10"
+    },
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
